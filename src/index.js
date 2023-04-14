@@ -1,29 +1,23 @@
-document.addEventListener("DOMContentLoaded", () => {
-  //grab all the necessary DOM elements
+const form = document.querySelector("form")
 
-  //form and relevant input fields
-  const newTaskForm = document.getElementById("create-task-form");
-  const newTaskDescription = document.getElementById("new-task-description");
-  const newTaskPriority = document.getElementById("new-task-priority");
+const createTask = (taskValue) => {
+  const li = document.createElement("li")
+  li.className = "task-item"
+  li.innerText = taskValue
 
-  //ul where new tasks will live on the DOM
-  const newTaskUl = document.getElementById("tasks");
+  const button = document.createElement("button")
+  button.className = "delete-btn"
+  button.innerText = "X"
+  button.addEventListener("click", () => li.remove())
 
-  //attach event listeners
-  newTaskForm.addEventListener("submit", createNewTask);
-});
+  li.appendChild(button)
+  tasks.appendChild(li)
+}
 
-const createNewTask = event => {
-  event.preventDefault();
-  //stop form from trying to submit
-  const newTaskDescription = document.getElementById("new-task-description");
-  const newTask = document.createElement("li");
-  newTask.innerText = newTaskDescription.value;
-
-  appendNewTask(newTask);
-  event.target.reset();
-};
-
-const appendNewTask = task => {
-  document.getElementById("tasks").appendChild(task);
-};
+form.addEventListener("submit", e => {
+  e.preventDefault()
+  let userInput = e.target
+  ["new-task-description"].value
+  createTask(userInput)
+  e.target.reset()
+})
